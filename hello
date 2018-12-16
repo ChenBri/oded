@@ -1,0 +1,54 @@
+	for (letterCounter = 0;letterCounter < 26;letterCounter++)
+	{
+		for (k = 0;k < strlen(str)-1;k++)
+		{
+			if (str[k] == MIN_LETTER + letterCounter)
+			{
+				for (l = 0;l < strlen(str)-1;l++)
+				{
+					if ((str[k] == str[l]) && (l != k))
+					{
+						dumLetter = str[indexCounter];
+						str[indexCounter] = str[k];
+						str[k] = dumLetter;
+						dumLetter = str[strlen(str) - 1 - indexCounter];
+						str[strlen(str) - 1 - indexCounter] = str[l];
+						str[l] = dumLetter;
+						indexCounter++;
+						break;
+					}
+					else if(l== strlen(str) - 2)
+					{
+						if (loneChar == 1)
+						{
+							printf("The string %s does not have a palindrome\n", savedStr);
+							return;
+						}
+
+						else if ((strlen(str) - 1) % 2 == 0)
+						{
+							printf("The string %s does not have a palindrome\n", savedStr);
+							return;
+						}
+						else
+						{
+							dumLetter = str[k];
+							str[k] = str[strlen(str)/2];
+							str[(strlen(str) / 2)] = dumLetter;
+							loneChar=1;
+						}
+					}
+					else
+					{
+						continue;
+					}
+				}
+			}
+			else
+			{
+				continue;
+			}
+		}
+	}
+	printf("The string %s has the palindrome %s\n", savedStr , str);
+}
